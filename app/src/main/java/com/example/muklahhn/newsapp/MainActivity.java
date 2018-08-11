@@ -2,12 +2,14 @@ package com.example.muklahhn.newsapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements
         mNewsList = (RecyclerView) findViewById(R.id.rv_news);
         mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
 
-        GridLayoutManager LayoutManager = new GridLayoutManager(this, 2);
+        LinearLayoutManager LayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mNewsList.setLayoutManager(LayoutManager);
         mNewsList.setHasFixedSize(true);
         mAdapter = new NewsAdapter(this);
@@ -112,9 +114,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(NewsItem news) {
-        Context context = this;
-        Class destinationClass = MainActivity.class;
-        Intent intentToStartDetailActivity = new Intent(context, destinationClass);
+        Uri newsUri = Uri.parse(news.getWebUrl());
+        Intent intentToStartDetailActivity = new Intent(Intent.ACTION_VIEW, newsUri);
         startActivity(intentToStartDetailActivity);
     }
 

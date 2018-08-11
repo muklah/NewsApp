@@ -5,10 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -33,11 +30,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.RecyclerViewHo
     class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public final TextView SectionName;
+        public final TextView WebPublicationDate;
         public final TextView WebTitle;
 
         public RecyclerViewHolder(View view) {
             super(view);
             SectionName = (TextView)itemView.findViewById(R.id.section_name);
+            WebPublicationDate = (TextView)itemView.findViewById(R.id.web_publication_date);
             WebTitle = (TextView)itemView.findViewById(R.id.web_title);
             view.setOnClickListener(this);
         }
@@ -45,8 +44,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.RecyclerViewHo
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            NewsItem movie = mNewsItems.get(adapterPosition);
-            mClickHandler.onClick(movie);
+            NewsItem news = mNewsItems.get(adapterPosition);
+            mClickHandler.onClick(news);
         }
     }
 
@@ -65,6 +64,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.RecyclerViewHo
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         holder.SectionName.setText(String.valueOf(mNewsItems.get(position).getSectionName()));
+        holder.WebPublicationDate.setText(String.valueOf(mNewsItems.get(position).getWebPublicationDate()));
         holder.WebTitle.setText(String.valueOf(mNewsItems.get(position).getWebTitle()));
     }
 

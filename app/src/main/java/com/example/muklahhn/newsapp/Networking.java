@@ -21,7 +21,7 @@ public class Networking {
 
     private static final String TAG = Networking.class.getSimpleName();
 
-    private static final String NEWS_URL = "http://content.guardianapis.com/search";
+    private static final String NEWS_URL = "https://content.guardianapis.com/search";
     private static final String apiKey = "add api key here";
 
     private static final String Q = "q";
@@ -96,7 +96,7 @@ public class Networking {
         }
         return output.toString();
     }
-    
+
 
 //    public static String getResponseFromHttpUrl(URL url) throws IOException {
 //        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();

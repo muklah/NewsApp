@@ -22,7 +22,7 @@ public class Networking {
     private static final String TAG = Networking.class.getSimpleName();
 
     private static final String NEWS_URL = "https://content.guardianapis.com/search";
-    private static final String apiKey = "5e9b2859-85a6-492c-b4ca-cdc2d9233058";
+    private static final String apiKey = "add api key here";
 
     private static final String Q = "q";
     private static final String DEBATES = "debates";

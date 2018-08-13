@@ -22,15 +22,18 @@ public class Networking {
     private static final String TAG = Networking.class.getSimpleName();
 
     private static final String NEWS_URL = "https://content.guardianapis.com/search";
-    private static final String apiKey = "add api key here";
+    private static final String apiKey = "5e9b2859-85a6-492c-b4ca-cdc2d9233058";
 
     private static final String Q = "q";
     private static final String DEBATES = "debates";
-    final static String API_PARAM = "api-key";
+    private static final String SHOW_TAGS = "show-tags";
+    private static final String CONTRIBUTOR = "contributor";
+    private static final String API_PARAM = "api-key";
 
     public static URL buildUrl() {
         Uri builtUri = Uri.parse(NEWS_URL).buildUpon()
                 .appendQueryParameter(Q, DEBATES)
+                .appendQueryParameter(SHOW_TAGS, CONTRIBUTOR)
                 .appendQueryParameter(API_PARAM, apiKey)
                 .build();
 
@@ -96,5 +99,5 @@ public class Networking {
         }
         return output.toString();
     }
-    
+
 }

@@ -32,12 +32,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.RecyclerViewHo
         public final TextView SectionName;
         public final TextView WebPublicationDate;
         public final TextView WebTitle;
+        public final TextView TagsWebTitle;
 
         public RecyclerViewHolder(View view) {
             super(view);
-            SectionName = (TextView)itemView.findViewById(R.id.section_name);
-            WebPublicationDate = (TextView)itemView.findViewById(R.id.web_publication_date);
-            WebTitle = (TextView)itemView.findViewById(R.id.web_title);
+            SectionName = itemView.findViewById(R.id.section_name);
+            WebPublicationDate = itemView.findViewById(R.id.web_publication_date);
+            WebTitle = itemView.findViewById(R.id.web_title);
+            TagsWebTitle = itemView.findViewById(R.id.tags_web_title);
             view.setOnClickListener(this);
         }
 
@@ -66,6 +68,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.RecyclerViewHo
         holder.SectionName.setText(String.valueOf(mNewsItems.get(position).getSectionName()));
         holder.WebPublicationDate.setText(String.valueOf(mNewsItems.get(position).getWebPublicationDate()));
         holder.WebTitle.setText(String.valueOf(mNewsItems.get(position).getWebTitle()));
+        holder.TagsWebTitle.setText("Author: " + String.valueOf(mNewsItems.get(position).getTagsWebTitle()));
     }
 
 

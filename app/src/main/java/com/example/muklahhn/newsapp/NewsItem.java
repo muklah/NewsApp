@@ -14,12 +14,14 @@ public class NewsItem implements Parcelable {
     private String web_publication_date;
     private String web_title;
     private String web_url;
+    private String tags_web_title;
 
-    public NewsItem(String section_name, String web_publication_date, String web_title, String web_url) {
+    public NewsItem(String section_name, String web_publication_date, String web_title, String web_url, String tags_web_title) {
         this.section_name = section_name;
         this.web_publication_date = web_publication_date;
         this.web_title = web_title;
         this.web_url = web_url;
+        this.tags_web_title = tags_web_title;
     }
 
     @Override
@@ -28,6 +30,7 @@ public class NewsItem implements Parcelable {
         out.writeString(web_publication_date);
         out.writeString(web_title);
         out.writeString(web_url);
+        out.writeString(tags_web_title);
     }
 
     private NewsItem(Parcel in) {
@@ -35,6 +38,7 @@ public class NewsItem implements Parcelable {
         this.web_publication_date               = in.readString();
         this.web_title         = in.readString();
         this.web_url               = in.readString();
+        this.tags_web_title               = in.readString();
     }
 
     public NewsItem() {
@@ -70,6 +74,10 @@ public class NewsItem implements Parcelable {
 
     public String getWebUrl() {
         return web_url;
+    }
+
+    public String getTagsWebTitle() {
+        return tags_web_title;
     }
 
 }

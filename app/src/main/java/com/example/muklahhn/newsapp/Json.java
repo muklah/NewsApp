@@ -23,6 +23,7 @@ public class Json {
         final String WEB_PUBLICATION_DATE = "webPublicationDate";
         final String WEB_TITLE = "webTitle";
         final String WEB_URL = "webUrl";
+        final String TAGS = "tags";
 
         ArrayList<NewsItem> parsedNewsData = new ArrayList<NewsItem>();
 
@@ -35,6 +36,7 @@ public class Json {
             String web_publication_date;
             String web_title;
             String web_url;
+            String tags_web_title = "";
 
             JSONObject newsObject = newsArray.getJSONObject(i);
 
@@ -43,7 +45,15 @@ public class Json {
             web_title = newsObject.getString(WEB_TITLE);
             web_url = newsObject.getString(WEB_URL);
 
-            parsedNewsData.add(new NewsItem(section_name, web_publication_date, web_title, web_url));
+            JSONArray tagsArray = newsObject.getJSONArray(TAGS);
+            if (newsObject.has(TAGS)) {
+                JSONObject tagsObject = tagsArray.getJSONObject(0);
+                tags_web_title = tagsObject.getString(WEB_TITLE);
+            }else{
+                tags_web_title = "No Author";
+            }
+
+            parsedNewsData.add(new NewsItem(section_name, web_publication_date, web_title, web_url, tags_web_title));
 
         }
 

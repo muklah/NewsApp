@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mNewsList = (RecyclerView) findViewById(R.id.rv_news);
-        mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
+        mNewsList = findViewById(R.id.rv_news);
+        mErrorMessageDisplay = findViewById(R.id.tv_error_message_display);
 
         LinearLayoutManager LayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mNewsList.setLayoutManager(LayoutManager);
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements
         mAdapter = new NewsAdapter(this);
         mNewsList.setAdapter(mAdapter);
 
-        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
+        mLoadingIndicator = findViewById(R.id.pb_loading_indicator);
 
         int loaderId = NEWS_LOADER_ID;
 
@@ -108,15 +108,13 @@ public class MainActivity extends AppCompatActivity implements
     public void onLoaderReset(Loader<ArrayList<NewsItem>> loader) {
     }
 
-    private void invalidateData() {
-        mAdapter.setNewsData(null);
-    }
-
     @Override
     public void onClick(NewsItem news) {
         Uri newsUri = Uri.parse(news.getWebUrl());
         Intent intentToStartDetailActivity = new Intent(Intent.ACTION_VIEW, newsUri);
-        startActivity(intentToStartDetailActivity);
+        if (intentToStartDetailActivity.resolveActivity(getPackageManager()) != null) {
+            startActivity(intentToStartDetailActivity);
+        }
     }
 
     private void showNewsDataView() {
